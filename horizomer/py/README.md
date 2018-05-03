@@ -13,3 +13,6 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **phylosift_extract.py**: Extract marker gene sequences from search result.
  - `/projects/genome_annotation/20170307/markers/phylosift/scripts/phylosift_extract.py`
+
+**shrink_taxdump.py**: Shrink the standard NCBI taxdump files `nodes.dmp` and `names.dmp` so that they only contain given TaxIDs and their ancestors
+ - `/projects/genome_annotation/profiling/scripts/shrink_taxdump.py`
