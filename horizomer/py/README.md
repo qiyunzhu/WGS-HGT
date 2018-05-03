@@ -2,6 +2,14 @@
 
 All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated.
 
+#### Basic tree operations
+
+**assign_node_ids.py**: Assign incremental node IDs to a tree in level order.
+
+**remove_supports.py**: Remove node support values from a tree.
+
+#### Tool-specific utilities
+
 **phylophlan_summarize.py**: Generate marker map and summarize genome to marker matches.
  - `/projects/genome_annotation/20170307/markers/phylophlan/scripts/phylophlan_summarize.py`
 
