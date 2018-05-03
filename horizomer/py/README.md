@@ -8,7 +8,9 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **remove_supports.py**: Remove node support values from a tree.
 
-**root_by_outgroup**: Re-root a tree with a given set of taxa as the outgroup.
+**root_by_outgroup.py**: Re-root a tree with a given set of taxa as the outgroup.
+
+**order_nodes.py**: Re-order nodes of a tree in increasing or decreasing order.
 
 #### Tool-specific utilities
 
