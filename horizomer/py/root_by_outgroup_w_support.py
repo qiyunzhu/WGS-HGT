@@ -1,4 +1,5 @@
 # Re-root a tree with a given set of taxa as the outgroup.
+# Note: This version can parse branch support values correctly when re-rooting.
 # Usage: python me.py input.nwk taxa.txt output.nwk
 
 from sys import argv
@@ -7,10 +8,62 @@ from skbio import TreeNode
 
 def main():
     tree = TreeNode.read(argv[1])
+    assign_supports(tree)
     with open(argv[2], 'r') as f:
         outgroup = f.read().splitlines()
     out = root_by_outgroup(tree, outgroup)
+    for node in out.non_tips():
+        if node.support is not None:
+            if node.name is not None and node.name != '':
+                node.name = '%s:%s' % (node.support, node.name)
+            else:
+                node.name = '%s' % node.support
     out.write(argv[3])
+
+
+def assign_supports(tree):
+    """Extract support values from internal node labels of a tree.
+
+    Notes
+    -----
+    A "support value" measures the confidence or frequency of the incoming
+    branch (the branch from parent to self) of an internal node in a tree.
+    Roots and tips do not have support values. To extract a support value
+    from a node label, this method reads from left and stops at the first
+    ":" (if any), and attempts to convert it to a number.
+
+    For examples: "(a,b)1.0", "(a,b)1.0:2.5", and "(a,b)'1.0:species_A'".
+    In these cases the support values are all 1.0.
+
+    For examples: "(a,b):1.0" and "(a,b)species_A". In these cases there
+    are no support values.
+
+    If a support value is successfully extracted, it will be stripped from
+    the node label and assigned to the `support` property.
+
+    IMPORTANT: mathematically, "support value" is a property of a branch,
+    not a node. Because of historical reasons, support values are usually
+    attached to nodes in a typical tree file [1].
+
+    [1] Czech, Lucas, Jaime Huerta-Cepas, and Alexandros Stamatakis. "A
+        Critical Review on the Use of Support Values in Tree Viewers and
+        Bioinformatics Toolkits." Molecular biology and evolution 34.6
+        (2017): 1535-1542.
+    """
+    for node in tree.traverse():
+        node.support = None
+        if node.is_root() or node.is_tip() or node.name is None:
+            continue
+        left, _, right = node.name.partition(':')
+        try:
+            node.support = int(left)
+        except ValueError:
+            try:
+                node.support = float(left)
+            except ValueError:
+                pass
+        if node.support is not None:
+            node.name = right or None
 
 
 def walk_copy(node, src):
@@ -109,6 +162,10 @@ def walk_copy(node, src):
                   else src.length + node.length if move == 'bottom'
                   else src.length)  # up or top
 
+    # determine support of the new node
+    res.support = (node.support if move in ('down', 'bottom')
+                   else src.support)
+
     # append children except for src (if applies)
     res.extend([walk_copy(c, node) for c in children if c is not src])
 
@@ -154,7 +211,9 @@ def root_above(node, name=None):
     left.length = right.length = node.length / 2
 
     # create new root
-    return TreeNode(name, children=[left, right])
+    res = TreeNode(name, children=[left, right])
+    res.support = None
+    return res
 
 
 def root_by_outgroup(tree, outgroup):
@@ -172,15 +231,11 @@ def root_by_outgroup(tree, outgroup):
     skbio.TreeNode
         resulting rooted tree
     """
-    outgroup = set(outgroup)
-    if not outgroup < set([x.name for x in tree.tips()]):
+    if not set(outgroup) < set([x.name for x in tree.tips()]):
         raise ValueError('Outgroup is not a subset of tree tips.')
 
     # create new tree
     res = tree.copy()
-
-    if not check_labels(res):
-        print('1st')
 
     # locate the lowest common ancestor (LCA) of outgroup in the target tree
     lca = res.lca(outgroup)
@@ -190,16 +245,11 @@ def root_by_outgroup(tree, outgroup):
     if lca is res:
         for tip in tree.tips():
             if tip.name not in outgroup:
-                res = root_above(tip.parent)
-                if not check_labels(res):
-                    print('2nd')
+                res = root_above(tip)
                 break
         lca = res.lca(outgroup)
         if lca is res:
             raise ValueError('Outgroup is not monophyletic in the tree.')
-
-    if not check_labels(root_above(lca)):
-        print('3rd')
 
     # re-root the target tree between LCA of outgroup and LCA of ingroup
     return root_above(lca)

@@ -12,6 +12,12 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **order_nodes.py**: Re-order nodes of a tree in increasing or decreasing order.
 
+#### Specialized tree operations
+
+**order_nodes_centered.py**: Re-order nodes of tree in a way such that the two basal clades are in increasing and decreasing order, respectively. If the input tree is already midpoint-rooted, the output tree will shape like a triangle.
+
+**root_by_outgroup_w_support.py**: Re-root a tree with a given set of taxa as the outgroup. This version can handle branch support values correctly.
+
 #### Tool-specific utilities
 
 **phylophlan_summarize.py**: Generate marker map and summarize genome to marker matches.
