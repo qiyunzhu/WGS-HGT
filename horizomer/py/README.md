@@ -34,12 +34,20 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 #### Taxonomy utilities
 
-**shrink_taxdump.py**: Shrink the standard NCBI taxdump files `nodes.dmp` and `names.dmp` so that they only contain given TaxIDs and their ancestors
+**shrink_taxdump.py**: Shrink the standard NCBI taxdump files `nodes.dmp` and `names.dmp` so that they only contain given TaxIDs and their ancestors.
  - `/projects/genome_annotation/profiling/scripts/shrink_taxdump.py`
+
+**recursive_shear.py**: Shear a tree recursively so that eventually all tips match a given taxon set.
+ - `/projects/genome_annotation/20170307/taxonomy/scripts/recursive_shear.py`
+
+**map_taxa_in_tree.py**: Convert a taxonomy tree into a genome tree based on a TaxID-to-genome(s) map.
+
+**taxdump_to_ranks.py**: Extract parental taxa at given ranks from NCBI taxonomy for genomes.
 
 **taxdump_to_tree.py**: Build a tree based on NCBI taxdump.
  - `/projects/genome_annotation/20170307/taxonomy/scripts/taxdump_to_tree.py`
 
 **tree_to_taxonomy.py**: Generate pseudo taxonomic hierarchies based on a tree.
  - `/projects/genome_annotation/profiling/scripts/tree_to_taxonomy.py`
- 
+
+**ranks_to_tree.py**: Convert a genome-to-ranks table into a tree.
