@@ -14,8 +14,6 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 #### Specialized tree operations
 
-**tree2tax.py**: Generate pseudo taxonomic hierarchies based on a tree.
-
 **order_nodes_centered.py**: Re-order nodes of tree in a way such that the two basal clades are in increasing and decreasing order, respectively. If the input tree is already midpoint-rooted, the output tree will shape like a triangle.
 
 **root_by_outgroup_w_support.py**: Re-root a tree with a given set of taxa as the outgroup. This version can handle branch support values correctly.
@@ -34,5 +32,14 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 **phylosift_extract.py**: Extract marker gene sequences from search result.
  - `/projects/genome_annotation/20170307/markers/phylosift/scripts/phylosift_extract.py`
 
+#### Taxonomy utilities
+
 **shrink_taxdump.py**: Shrink the standard NCBI taxdump files `nodes.dmp` and `names.dmp` so that they only contain given TaxIDs and their ancestors
  - `/projects/genome_annotation/profiling/scripts/shrink_taxdump.py`
+
+**taxdump_to_tree.py**: Build a tree based on NCBI taxdump.
+ - `/projects/genome_annotation/20170307/taxonomy/scripts/taxdump_to_tree.py`
+
+**tree_to_taxonomy.py**: Generate pseudo taxonomic hierarchies based on a tree.
+ - `/projects/genome_annotation/profiling/scripts/tree_to_taxonomy.py`
+ 
