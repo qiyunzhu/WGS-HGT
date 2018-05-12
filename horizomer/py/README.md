@@ -18,6 +18,8 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **root_by_outgroup_w_support.py**: Re-root a tree with a given set of taxa as the outgroup. This version can handle branch support values correctly.
 
+**subsample_tree.py**: Shrink a tree to a given number of taxa which maximize the sum of phylogenetic distances.
+
 #### Tool-specific utilities
 
 **phylophlan_summarize.py**: Generate marker map and summarize genome to marker matches.

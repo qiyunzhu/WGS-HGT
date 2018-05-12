@@ -44,6 +44,7 @@ if int2tip is True:
         if taxon is not None and taxon in taxa_to_keep:
             node.name = None
             node.parent.extend([TreeNode(taxon)])
-    print('Remaining tips in tree after extension: %d.' % tree.count(tips=True))
+    print('Remaining tips in tree after extension: %d.'
+          % tree.count(tips=True))
 
 tree.write(argv[4])

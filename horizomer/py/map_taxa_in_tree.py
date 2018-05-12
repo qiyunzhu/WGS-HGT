@@ -3,7 +3,7 @@
 # is mapped to a such TaxID, it will be appended as a tip from this node.
 # usage: python: me.py input.nwk g2tid.txt output.nwk
 
-from sys import argv, exit
+from sys import argv
 from skbio import TreeNode
 
 tree = TreeNode.read(argv[1])

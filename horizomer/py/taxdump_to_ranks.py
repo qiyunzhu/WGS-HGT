@@ -51,7 +51,8 @@ for tid in tids:
         if rank in rank_dic:
             rankx = rank_dic[rank]
             if rank_tids[tid][rankx] != '0':
-                print('taxon %s has duplicated definition of rank %s' % (tid, rankx))
+                print('taxon %s has duplicated definition of rank %s'
+                      % (tid, rankx))
             rank_tids[tid][rankx] = cid
             name = taxdump[cid]['name']
             if ';' in name:
@@ -73,8 +74,10 @@ for f in (f1, f2):
     f.write('genome\t%s\n' % '\t'.join(ranks))
 
 for g in sorted(g2tid):
-    f1.write('%s\t%s\n' % (g, '\t'.join([rank_tids[g2tid[g]][x] for x in ranks])))
-    f2.write('%s\t%s\n' % (g, '\t'.join([rank_names[g2tid[g]][x] for x in ranks])))
+    f1.write('%s\t%s\n' % (g, '\t'.join([rank_tids[g2tid[g]][x]
+                                         for x in ranks])))
+    f2.write('%s\t%s\n' % (g, '\t'.join([rank_names[g2tid[g]][x]
+                                         for x in ranks])))
 
 f1.close()
 f2.close()
