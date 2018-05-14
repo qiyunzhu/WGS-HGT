@@ -20,6 +20,9 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **subsample_tree.py**: Shrink a tree to a given number of taxa which maximize the sum of phylogenetic distances.
 
+**make_rfd_matrix.py**: Generate a matrix of Robinson-Foulds distances among all trees.
+ - `/projects/genome_annotation/20170307/markers/phylophlan/trees/make_rfd_matrix.py`
+
 #### Tool-specific utilities
 
 **phylophlan_summarize.py**: Generate marker map and summarize genome to marker matches.
@@ -33,6 +36,9 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **phylosift_extract.py**: Extract marker gene sequences from search result.
  - `/projects/genome_annotation/20170307/markers/phylosift/scripts/phylosift_extract.py`
+
+**dm_to_phylip.py**: Convert a distance matrix into the Phylip format (lower triangle) which can then be parsed by ClearCut.
+ - `/projects/genome_annotation/20170307/markers/phylophlan/scripts/dm_to_phylip.py`
 
 #### Taxonomy utilities
 
