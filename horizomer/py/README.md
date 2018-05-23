@@ -40,6 +40,9 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 **dm_to_phylip.py**: Convert a distance matrix into the Phylip format (lower triangle) which can then be parsed by ClearCut.
  - `/projects/genome_annotation/20170307/markers/phylophlan/scripts/dm_to_phylip.py`
 
+**r8s_summarize_result.py**: Summarize r8s divergence time estimation results.
+ - `/projects/genome_annotation/20170307/tols/dating/scripts/r8s_summarize_result.py`
+
 #### Taxonomy utilities
 
 **shrink_taxdump.py**: Shrink the standard NCBI taxdump files `nodes.dmp` and `names.dmp` so that they only contain given TaxIDs and their ancestors.
