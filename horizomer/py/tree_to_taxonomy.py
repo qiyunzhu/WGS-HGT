@@ -7,7 +7,7 @@ from skbio import TreeNode
 tree = TreeNode.read(argv[1])
 
 print('Number of nodes: %d.' % tree.count())
-print(tree.ascii_art())
+# print(tree.ascii_art())
 
 
 def collapse(nodes):
@@ -32,7 +32,7 @@ if len(argv) > 2:
                 nodes_to_collapse.append(node)
     collapse(nodes_to_collapse)
     print('Number of nodes: %d.' % tree.count())
-    print(tree.ascii_art())
+    # print(tree.ascii_art())
 
 # collapse short branches
 if len(argv) > 3:
@@ -46,19 +46,19 @@ if len(argv) > 3:
             break
         collapse(nodes_to_collapse)
     print('Number of nodes: %d.' % tree.count())
-    print(tree.ascii_art())
+    # print(tree.ascii_art())
 
-# assign node IDs
-idx = 1
-for node in tree.levelorder():
-    if not node.is_tip():
-        node.name = 'N%d' % idx
-        idx += 1
-print('Internal node labels N1..N%d assigned.' % idx)
-print(tree.ascii_art())
+# assign node IDs if not already done
+if tree.name != 'N1':
+    idx = 1
+    for node in tree.levelorder():
+        if not node.is_tip():
+            node.name = 'N%d' % idx
+            idx += 1
+    print('Internal node labels N1..N%d assigned.' % idx)
+    # print(tree.ascii_art())
 
-# output tree with node labels
-tree.write('tree_w_nodeIds.nwk')
+    tree.write('tree.nids.nwk')
 
 # generate Greengenes-style lineage map:
 # taxon <tab> N1;N5;N12;N46;N113
@@ -79,6 +79,9 @@ with open('g2lineage.txt', 'w') as f:
 
 # generate fake TaxID map
 tip2idx = {}
+idx = 1
+for node in tree.non_tips():
+    idx = max(idx, int(node.name[1:]) + 1)
 for tip in tree.tips():
     tip2idx[tip.name] = str(idx)
     idx += 1
