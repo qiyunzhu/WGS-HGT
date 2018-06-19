@@ -62,3 +62,11 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
  - `/projects/genome_annotation/profiling/scripts/tree_to_taxonomy.py`
 
 **ranks_to_tree.py**: Convert a genome-to-ranks table into a tree.
+
+#### Community analysis utilities
+
+**normalize_to_cpm.py**: Normalize a BIOM table to copies per million sequences (cpm).
+ - `~/Scripts/make_cpm_biom.py`
+
+**filter_otus_per_sample.py**: Filter out low-abundance OTUs within each sample in a BIOM table.
+ - `~/Scripts/filter_otus_per_sample.py`
