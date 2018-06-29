@@ -23,6 +23,17 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 **make_rfd_matrix.py**: Generate a matrix of Robinson-Foulds distances among all trees.
  - `/projects/genome_annotation/20170307/markers/phylophlan/trees/make_rfd_matrix.py`
 
+#### Advanced analyses ####
+
+**align_distmat.py**: Generate a matrix of pairwise Hamming distances among sequences in an alignment, excluding gaps.
+ - `/projects/genome_annotation/20170307/align/align_distmat.py`
+
+**phylo_distmat.py**: Generate a matrix of phylogenetic distance (sum of branch lengths) among taxa in a tree.
+ - `/projects/genome_annotation/20170307/tols/distmat/phylo_distmat.py`
+
+**sample_ab_dists.py**: Sample pairwise phylogenetic and sequential distances inter- and intra-domains (Archaea and Bacteria).
+ - `/projects/genome_annotation/20170307/analyses/saturation/sample_ab_dists.py`
+
 #### Tool-specific utilities
 
 **phylophlan_summarize.py**: Generate marker map and summarize genome to marker matches.
