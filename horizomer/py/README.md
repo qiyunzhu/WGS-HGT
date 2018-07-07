@@ -12,6 +12,8 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **order_nodes.py**: Re-order nodes of a tree in increasing or decreasing order.
 
+**unpack_low_support_w_format.py**: Unpack (collapse) internal nodes with branch support value lower than given cutoff.
+
 #### Specialized tree operations
 
 **order_nodes_centered.py**: Re-order nodes of tree in a way such that the two basal clades are in increasing and decreasing order, respectively. If the input tree is already midpoint-rooted, the output tree will shape like a triangle.
