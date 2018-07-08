@@ -14,6 +14,8 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **unpack_low_support_w_format.py**: Unpack (collapse) internal nodes with branch support value lower than given cutoff.
 
+**append_taxa.py**: Append extra taxa to a tree as polytomies based on a tip-to-taxa map.
+
 #### Specialized tree operations
 
 **order_nodes_centered.py**: Re-order nodes of tree in a way such that the two basal clades are in increasing and decreasing order, respectively. If the input tree is already midpoint-rooted, the output tree will shape like a triangle.
@@ -24,6 +26,10 @@ All scripts depend on Python 3.5+ with scikit-bio 0.5.1, unless otherwise stated
 
 **make_rfd_matrix.py**: Generate a matrix of Robinson-Foulds distances among all trees.
  - `/projects/genome_annotation/20170307/markers/phylophlan/trees/make_rfd_matrix.py`
+
+#### Basic alignment operations ####
+
+**make_duplicate_map.py**: Generate a core-to-duplicate map for an MSA filtered by RAxML.
 
 #### Advanced analyses ####
 
